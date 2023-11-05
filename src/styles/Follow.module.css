@@ -1,0 +1,19 @@
+.wrapper {
+    text-align: center;
+}
+
+.wrapper > h2 {
+    margin: 1rem 0;
+}
+
+.wrapper > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.name {
+    font-weight: normal;
+    padding: .5rem;
+}
