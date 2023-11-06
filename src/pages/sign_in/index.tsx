@@ -1,3 +1,4 @@
+import styles from "../../styles/Sign.module.css"
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -38,17 +39,19 @@ const index = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.wrapper}>
       <h2>ログインフォーム</h2>
       <input
         type="text"
         {...register("email")}
         placeholder="emailを入力してください"
+        className={styles.input}
       />
       <input
         type="password"
         {...register("password")}
         placeholder="passwordを入力してください"
+        className={styles.input}
       />
       <button type="submit">送信する</button>
     </form>

@@ -1,3 +1,4 @@
+import styles from "../../styles/Sign.module.css"
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -37,7 +38,7 @@ const Page = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.wrapper}>
       <h2>新規登録</h2>
       <input
         type="text"
