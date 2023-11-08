@@ -20,7 +20,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     }
   );
-
   return {
     props: {
       favoriteRecipes: favoriteRecipes.data,

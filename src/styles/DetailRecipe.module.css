@@ -7,13 +7,18 @@
     border-radius: 1rem;
 }
 
+.recipe_name {
+    font-size: 1.3rem;
+    padding: 0.5rem;
+}
+
 .img_wrapper {
     height: 250px;
 }
 
-.ingredient {
-    padding: 0 1rem;
-    text-align: left;
+.ingredient_list {
+    padding: 1rem;
+    text-align: center;
     list-style: none;
 }
 
@@ -26,4 +31,5 @@
 .process {
     text-align: left;
     padding: 1rem;
+    white-space: pre-wrap;
 }

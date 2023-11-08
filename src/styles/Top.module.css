@@ -3,14 +3,16 @@
     background-color: var(--orange);
     text-align: center;
     padding: 1rem 0;
+    font-size: 1.5rem;
 }
 
 .headers {
     text-align: center;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     padding: 1rem;
+    font-size: 1.2rem;
 }
 
 .recipe_wrapper {
@@ -51,10 +53,19 @@
 
 
 @media screen and (max-width: 768px) {
+    .heading {
+        font-size: 1rem;
+    }
     .recipe_wrapper {
         flex-direction: column;
     }
     .recipe_wrapper > article {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .headers {
+        font-size: 0.8rem;
     }
 }

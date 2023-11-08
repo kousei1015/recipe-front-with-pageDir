@@ -52,7 +52,7 @@ const RecipeDetail = ({
   return (
     <div className={styles.wrapper}>
       <div className={styles.recipe}>
-        <h2>{recipe.recipe_name}</h2>
+        <h2 className={styles.recipe_name}>{recipe.recipe_name}</h2>
         <div className={styles.img_wrapper}>
           <Image
             src={recipe.image_url || NoImage}
@@ -65,10 +65,10 @@ const RecipeDetail = ({
           <p>{recipe.process}</p>
         </div>
         <h3>材料</h3>
-        <ul>
+        <ul className={styles.ingredient_list}>
           {recipe.ingredients?.map((ingredient) => {
             return (
-              <li className={styles.ingredient}>
+              <li className={styles.ingredient_item}>
                 {ingredient.name} {ingredient.quantity}
               </li>
             );

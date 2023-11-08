@@ -28,7 +28,7 @@ const Page = () => {
     setIngredients(newIngredients);
   };
 
-
+  
   const handleIngredientQuantity = (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
@@ -117,11 +117,12 @@ const Page = () => {
           <button onClick={() => handleRemoveIngredient(index)}>削除</button>
         </div>
       ))}
-      <button onClick={handleAddIngredient}>材料を追加</button>
-
-      <button onClick={handleClick} disabled={!name || !process}>
-        送信
-      </button>
+      <div className={styles.btn_wrapper}>
+        <button onClick={handleAddIngredient}>材料を追加</button>
+        <button onClick={handleClick} disabled={!name || !process}>
+          送信
+        </button>
+      </div>
     </div>
   );
 };
