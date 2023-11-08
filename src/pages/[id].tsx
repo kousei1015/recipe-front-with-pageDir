@@ -83,14 +83,14 @@ const RecipeDetail = ({
 
         {/*既にレシピがお気に入り済みの場合はお気に入りを解除させる そうでない場合は保存させる */}
         {isFavorited ? (
-          <UnfavoriteButton favorite_id={recipe.favorite_id} />
+          <UnfavoriteButton favorite_id={recipe.favorite_id as number} />
         ) : (
           <FavoriteButton recipe_id={recipe.id} />
         )}
 
         {/*フォロー済みの場合はフォローを解除する。 そうでない場合はフォローする */}
         {isFollowed ? (
-          <UnfollowButton follow_id={recipe.follow_id} />
+          <UnfollowButton follow_id={recipe.follow_id as number} />
         ) : (
           <FollowButton user_id={recipe.user_id} />
         )}

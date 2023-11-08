@@ -31,8 +31,8 @@ export type RECIPE = {
   image_url: string;
   user_id: number;
   user_name: string;
-  favorite_id: number;
-  follow_id: number;
+  favorite_id?: number;
+  follow_id?: number;
 };
 
 export type RECIPES = {
