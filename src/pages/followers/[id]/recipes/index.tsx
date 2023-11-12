@@ -43,7 +43,7 @@ const index = ({ recipes }: { recipes: RECIPES }) => {
               />
               <span className={styles.recipe_name}>{recipe.recipe_name}</span>
             </div>
-            <p>ユーザー名: {recipe.user_name}</p>
+            <p className={styles.user_name}>ユーザー名: {recipe.user_name}</p>
           </Link>
         </article>
       ))}

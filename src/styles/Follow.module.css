@@ -3,12 +3,15 @@
 }
 
 .wrapper > h2 {
+    font-size: 1.3rem;
+    font-weight: bold;
     margin: 1rem 0;
 }
 
 .wrapper > div {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
 }

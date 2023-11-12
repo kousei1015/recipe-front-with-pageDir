@@ -40,7 +40,7 @@ const index = ({ recipes }: { recipes: RECIPES }) => {
   return (
     <div className={styles.wrapper}>
       {recipes?.recipes.map((recipe) => (
-        <article key={recipe.id}>
+        <article key={recipe.id} className={styles.recipe}>
           <Link href={`/${recipe.id}`}>
             <div className={styles.img_wrapper}>
               <Image
@@ -51,7 +51,7 @@ const index = ({ recipes }: { recipes: RECIPES }) => {
               />
               <span className={styles.recipe_name}>{recipe.recipe_name}</span>
             </div>
-            <p>ユーザー名: {recipe.user_name}</p>
+            <p className={styles.user_name}>ユーザー名: {recipe.user_name}</p>
           </Link>
         </article>
       ))}

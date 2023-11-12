@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const index = ({followers}: {followers: FOLLOW}) => {
   return (
     <div className={styles.wrapper}>
-      <h2>フォロー</h2>
+      <h2>フォロワー</h2>
       {followers.map((follower) => {
         return (
           <div key={follower.id}>
