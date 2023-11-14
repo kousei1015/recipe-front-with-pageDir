@@ -16,10 +16,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const userData = {
+const loginUserData = {
   is_login: true,
   user_id: 1,
+  user_name: "testuser",
+  avatar_url: "",
 };
+
+const notLoginUserData = {
+  is_login: false
+}
 
 const recipesData = {
   recipes: [
@@ -33,9 +39,16 @@ const recipesData = {
   ],
 };
 
-export const Basic: Story = {
+export const AtLogin: Story = {
   args: {
-    authInfo: userData,
+    authInfo: loginUserData,
     recipes: recipesData
   },
 };
+
+export const AtNotLogin: Story = {
+  args: {
+    authInfo: notLoginUserData,
+    recipes: recipesData
+  }
+}

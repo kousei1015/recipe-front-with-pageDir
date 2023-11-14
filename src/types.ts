@@ -9,7 +9,7 @@ export type SignUp = SignIn & {
 
 export type AUTHINFO = {
   is_login: boolean;
-  user_id: number;
+  user_id?: number;
   user_name?: string;
   avatar_url?: string;
 };
