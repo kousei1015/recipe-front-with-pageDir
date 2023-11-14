@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import DetailRecipe from "../pages/[id]"
+import DetailRecipe from "../pages/[id]";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -19,37 +19,51 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const recipeData = {
-    id: 1,
-    recipe_name: "美味しいオムライス",
-    process: "テスト",
-    image_url: "",
-    user_id: 1,
-    user_name: "testUser",
-    ingredients: [
-        {
-            name: "卵",
-            quantity: "3個"
-        },
-        {
-            name: "ご飯",
-            quantity: "200g"
-        },
-        {
-            name: "玉ねぎ",
-            quantity: "1個"
-        }
-    ]
-}
-
-const userData = {
-  is_login: true,
+const recipe = {
+  id: 1,
+  recipe_name: "じゃがりこポテサラ",
+  process:
+    "1. じゃがりこにお湯を100ほど注ぐ\r\n2. 2〜3分ほど待つ\r\n3. お好みでマヨネーズと胡椒を入れる\r\n",
+  image_url: "",
   user_id: 1,
+  user_name: "user",
+  avatar_url: "",
+  ingredients: [
+    {
+      name: "じゃがりこ",
+      quantity: "1個",
+    },
+    {
+      name: "水",
+      quantity: "100cc",
+    },
+  ],
 };
 
-export const Recipe: Story = {
+const recipeOwnerUser = {
+  is_login: true,
+  user_id: 1,
+  user_name: "user",
+  avatar_url: "",
+};
+
+const notRecipeOwnerUser = {
+  is_login: true,
+  user_id: 2,
+  user_name: "user",
+  avatar_url: "",
+};
+
+export const ownRecipe: Story = {
   args: {
-    authInfo: userData,
-    recipe: recipeData
+    authInfo: recipeOwnerUser,
+    recipe,
+  },
+};
+
+export const notOwnRecipe: Story = {
+  args: {
+    authInfo: notRecipeOwnerUser,
+    recipe,
   },
 };
