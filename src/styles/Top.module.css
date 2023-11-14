@@ -6,6 +6,27 @@
     font-size: 1.5rem;
 }
 
+.avatar_wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.3rem;
+}
+
+.avatar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.avatar > img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
 .headers {
     text-align: center;
     display: grid;
@@ -60,6 +81,10 @@
 }
 
 @media screen and (max-width: 500px) {
+    .avatar > img {
+        width: 40px;
+        height: 40px;
+    }
     .headers {
         font-size: 1rem;
         gap: 0.5rem;

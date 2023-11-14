@@ -79,7 +79,6 @@ const Page = () => {
         "access-token": Cookies.get("access-token"),
       },
     });
-    router.refresh();
     router.push("/");
   };
 

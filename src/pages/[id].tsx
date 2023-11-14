@@ -1,4 +1,4 @@
-import styles from "../styles/DetailRecipe.module.css"
+import styles from "../styles/DetailRecipe.module.css";
 import NoImage from "../../public/1560031.jpg";
 import DeleteButton from "@/components/DeleteButton";
 import FollowButton from "@/components/FollowButton";
@@ -78,7 +78,15 @@ const RecipeDetail = ({
         {isOwnRecipe ? (
           <DeleteButton recipe_id={recipe.id} />
         ) : (
-          <p>ユーザー名: {recipe.user_name}</p>
+          <div className={styles.avatar_wrapper}>
+            <Image
+              src={recipe.avatar_url || NoImage}
+              alt={recipe.avatar_url ? "レシピ画像" : "画像なし"}
+              width={100}
+              height={100}
+            />
+            <p>{recipe.user_name}</p>
+          </div>
         )}
 
         {/*既にレシピがお気に入り済みの場合はお気に入りを解除させる そうでない場合は保存させる */}

@@ -10,7 +10,22 @@ export type SignUp = SignIn & {
 export type AUTHINFO = {
   is_login: boolean;
   user_id: number;
+  user_name?: string;
+  avatar_url?: string;
 };
+
+export type ModalProps = {
+  isShow: boolean;
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
+  user_name: string;
+  avatar_url: string;
+};
+
+export type ProfileEditProps = {
+  name: string;
+  password: string;
+  avatar: File;
+}
 
 export type RECIPEBASE = {
   id: number;
@@ -31,6 +46,7 @@ export type RECIPE = {
   image_url: string;
   user_id: number;
   user_name: string;
+  avatar_url: string;
   favorite_id?: number;
   follow_id?: number;
 };

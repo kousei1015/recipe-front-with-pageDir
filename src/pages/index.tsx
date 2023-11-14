@@ -1,4 +1,6 @@
+import Modal from "@/components/Modal";
 import styles from "../styles/Top.module.css";
+import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import Image from "next/image";
@@ -47,8 +49,36 @@ const index = ({
   authInfo: AUTHINFO;
   recipes: RECIPES;
 }) => {
+  const [isShow, setIsShow] = useState(false);
+
+  const openModal = () => {
+    setIsShow(true);
+  };
+
   return (
     <>
+      {authInfo?.is_login ? (
+        <>
+          <div className={styles.avatar_wrapper}>
+            <div className={styles.avatar} onClick={openModal}>
+              <Image
+                src={authInfo.avatar_url || NoImage}
+                alt={authInfo.avatar_url ? "レシピ画像" : "画像なし"}
+                width={100}
+                height={100}
+              />
+              <span>{authInfo.user_name}</span>
+            </div>
+          </div>
+
+          <Modal
+            isShow={isShow}
+            setIsShow={setIsShow}
+            user_name={authInfo.user_name as string}
+            avatar_url={authInfo.avatar_url as string}
+          />
+        </>
+      ) : null}
       <h2 className={styles.heading}>レシピ一覧</h2>
       <div className={styles.headers}>
         {authInfo?.is_login ? (
