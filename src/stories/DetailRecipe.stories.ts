@@ -54,6 +54,10 @@ const notRecipeOwnerUser = {
   avatar_url: "",
 };
 
+const notLoginUser = {
+  is_login: false
+}
+
 export const ownRecipe: Story = {
   args: {
     authInfo: recipeOwnerUser,
@@ -67,3 +71,10 @@ export const notOwnRecipe: Story = {
     recipe,
   },
 };
+
+export const guestUserView: Story = {
+  args: {
+    authInfo: notLoginUser,
+    recipe
+  }
+}
