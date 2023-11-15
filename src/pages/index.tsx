@@ -1,4 +1,5 @@
 import Modal from "@/components/Modal";
+import LogoutButton from "../components/LogoutButton";
 import styles from "../styles/Top.module.css";
 import { useState } from "react";
 import Link from "next/link";
@@ -60,6 +61,7 @@ const index = ({
       {authInfo?.is_login ? (
         <>
           <div className={styles.avatar_wrapper}>
+          <LogoutButton />
             <div className={styles.avatar} onClick={openModal}>
               <Image
                 src={authInfo.avatar_url || NoImage}
