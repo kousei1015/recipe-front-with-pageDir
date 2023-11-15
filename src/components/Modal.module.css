@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   z-index: 999;
 }
 
@@ -20,8 +21,26 @@
   background: #fff;
 }
 
-.content > img {
+.avatar_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.avatar_wrapper > img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+}
+
+.links_item {
+  padding: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    width: 75%;
+  }
 }
