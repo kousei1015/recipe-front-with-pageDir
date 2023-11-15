@@ -46,6 +46,7 @@ const RecipeDetail = ({
   recipe: RECIPE;
   authInfo: AUTHINFO;
 }) => {
+  const isLogin = authInfo.is_login;
   const isOwnRecipe = recipe.user_id === authInfo.user_id;
   const isFavorited = !!recipe.favorite_id;
   const isFollowed = !!recipe.follow_id;
@@ -89,18 +90,26 @@ const RecipeDetail = ({
           </div>
         )}
 
-        {/*既にレシピがお気に入り済みの場合はお気に入りを解除させる そうでない場合は保存させる */}
-        {isFavorited ? (
-          <UnfavoriteButton favorite_id={recipe.favorite_id as number} />
-        ) : (
-          <FavoriteButton recipe_id={recipe.id} />
+        {/*ログインしていて、かつ既にレシピがお気に入り済みの場合はお気に入りを解除させる そうでない場合は保存させる */}
+        {isLogin && (
+          <>
+            {isFavorited ? (
+              <UnfavoriteButton favorite_id={recipe.favorite_id as number} />
+            ) : (
+              <FavoriteButton recipe_id={recipe.id} />
+            )}
+          </>
         )}
 
-        {/*フォロー済みの場合はフォローを解除する。 そうでない場合はフォローする */}
-        {isFollowed ? (
-          <UnfollowButton follow_id={recipe.follow_id as number} />
-        ) : (
-          <FollowButton user_id={recipe.user_id} />
+        {/*ログインしていて、かつユーザーを既にフォロー済みの場合はフォローを解除する。 そうでない場合はフォローする */}
+        {isLogin && (
+          <>
+            {isFollowed ? (
+              <UnfollowButton follow_id={recipe.follow_id as number} />
+            ) : (
+              <FollowButton user_id={recipe.user_id} />
+            )}
+          </>
         )}
       </div>
     </div>
