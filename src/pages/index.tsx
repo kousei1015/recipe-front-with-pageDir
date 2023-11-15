@@ -83,12 +83,6 @@ const index = ({
       <div className={styles.headers}>
         {authInfo?.is_login ? (
           <>
-            <Link href="/followings">
-              <h3>フォロー中</h3>
-            </Link>
-            <Link href="/followers">
-              <h3>フォロワー</h3>
-            </Link>
             <Link href="/favorites">
               <h3>保存済みレシピ</h3>
             </Link>
