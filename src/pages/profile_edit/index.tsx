@@ -9,8 +9,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const validationSchema = z.object({
-  name: z.string().min(1, "正しいメールアドレスを入力して下さい"),
-  password: z.string().min(6, "パスワードは6文字以上入力して下さい"),
+  name: z.string().min(1, "名前を入力して下さい"),
 });
 
 const index = () => {
@@ -33,7 +32,6 @@ const index = () => {
     const formData = new FormData();
 
     formData.append("name", data.name);
-    formData.append("password", data.password);
 
     if (fileInput.current?.files?.[0]) {
       formData.append("avatar", fileInput.current.files[0]);
@@ -59,18 +57,17 @@ const index = () => {
         placeholder="名前を入力してください"
         className={styles.input}
       />
+      {errors.name?.message && (
+        <p className={styles.error} data-testid="name-validation">
+          {errors.name?.message}
+        </p>
+      )}
       <input
         type="file"
         ref={(e) => {
           ref(e);
           fileInput.current = e;
         }}
-      />
-      <input
-        type="password"
-        {...register("password")}
-        placeholder="passwordを入力してください"
-        className={styles.input}
       />
       <button type="submit">送信する</button>
     </form>

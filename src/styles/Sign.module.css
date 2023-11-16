@@ -26,3 +26,7 @@
 .wrapper > button:hover {
     background-color: var(--hover);
 }
+
+.error {
+    color: red;
+}

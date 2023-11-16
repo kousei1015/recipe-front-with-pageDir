@@ -5,6 +5,7 @@ export type SignIn = {
 
 export type SignUp = SignIn & {
   name: string;
+  password_confirmation: string;
 };
 
 export type AUTHINFO = {
@@ -23,7 +24,6 @@ export type ModalProps = {
 
 export type ProfileEditProps = {
   name: string;
-  password: string;
   avatar: File;
 }
 
