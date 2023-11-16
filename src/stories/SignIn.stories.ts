@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import index from "../pages/sign_in/index";
-import { userEvent as user, within } from "@storybook/testing-library";
+import { userEvent as user, within, waitFor } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -37,5 +37,24 @@ export const typeInfomation: Story = {
 
     expect(emailInput).toHaveValue("test@example.com");
     expect(passwordInput).toHaveValue("password123");
+  },
+};
+
+export const validationCheck: Story = {
+  name: "バリデーションの確認",
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    await user.click(canvas.getByRole("button"));
+
+    await waitFor(() => {
+      expect(canvas.getByTestId("email-validation")).toHaveTextContent(
+        "正しいメールアドレスを入力して下さい"
+      );
+
+      expect(canvas.getByTestId("password-validation")).toHaveTextContent(
+        "パスワードは6文字以上入力して下さい"
+      );
+    });
   },
 };
