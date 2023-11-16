@@ -113,7 +113,7 @@ const index = ({
                 />
                 <span className={styles.recipe_name}>{recipe.recipe_name}</span>
               </div>
-              <p className={styles.user_name}>by {authInfo.user_name}</p>
+              <p className={styles.user_name}>by {recipe.user_name}</p>
             </Link>
           </article>
         ))}
