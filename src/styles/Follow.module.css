@@ -8,12 +8,24 @@
     margin: 1rem 0;
 }
 
-.wrapper > div {
+.follow_users {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
+    border-radius: 1rem;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+}
+
+.link > img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
 
 .name {
