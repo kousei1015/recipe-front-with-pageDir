@@ -76,4 +76,5 @@ export type FOLLOW = {
   follower_id: number;
   followed_id: number;
   user_name: string;
+  avatar_url: string;
 }[];
