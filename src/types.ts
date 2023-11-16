@@ -67,7 +67,6 @@ export type FavRecipes = {
   recipe_name: string;
   user_id: number;
   user_name: string;
-  process: string;
   image_url: string;
 }[];
 
