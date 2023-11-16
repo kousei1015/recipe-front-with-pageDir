@@ -24,7 +24,8 @@ const followings = [
         id: 1,
         follower_id:1,
         followed_id: 2,
-        user_name: "testUser"
+        user_name: "testUser",
+        avatar_url: "",
     }
 ]
 

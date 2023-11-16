@@ -23,11 +23,10 @@ const favRecipes = [
     {
         favorite_id: 1,
         recipe_id: 1,
-        recipe_name: "美味しいオムライス",
-        process: "テスト",
+        recipe_name: "じゃがりこポテサラ",
         image_url: "",
         user_id: 1,
-        user_name: "aaaa"
+        user_name: "testUser"
     }
 ]
 

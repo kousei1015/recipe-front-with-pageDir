@@ -31,10 +31,10 @@ const recipesData = {
   recipes: [
     {
       id: 1,
-      recipe_name: "美味しいオムライス",
+      recipe_name: "じゃがりこポテサラ",
       image_url: "",
       user_id: 2,
-      user_name: "bbbb",
+      user_name: "testUser",
     },
   ],
 };
