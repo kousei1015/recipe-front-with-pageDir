@@ -91,7 +91,7 @@ const RecipeDetail = ({
         )}
 
         {/*ログインしていて、かつ既にレシピがお気に入り済みの場合はお気に入りを解除させる そうでない場合は保存させる */}
-        {isLogin && (
+        {(isLogin && !isOwnRecipe) && (
           <>
             {isFavorited ? (
               <UnfavoriteButton favorite_id={recipe.favorite_id as number} />
@@ -102,7 +102,7 @@ const RecipeDetail = ({
         )}
 
         {/*ログインしていて、かつユーザーを既にフォロー済みの場合はフォローを解除する。 そうでない場合はフォローする */}
-        {isLogin && (
+        {(isLogin && !isOwnRecipe) && (
           <>
             {isFollowed ? (
               <UnfollowButton follow_id={recipe.follow_id as number} />
