@@ -1,4 +1,6 @@
-import styles from "../../styles/Follow.module.css"
+import styles from "../../styles/Follow.module.css";
+import Image from "next/image";
+import NoImage from "../../../public/1560031.jpg";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import axios from "axios";
@@ -31,21 +33,29 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       authInfo: authInfo.data,
-      followers: followers.data
+      followers: followers.data,
     },
   };
 };
 
-const index = ({followers}: {followers: FOLLOW}) => {
+const index = ({ followers }: { followers: FOLLOW }) => {
   return (
     <div className={styles.wrapper}>
-      <h2>フォロー</h2>
+      <h2>フォロワー</h2>
       {followers.map((follower) => {
         return (
-          <div key={follower.id}>
-            <h3 className={styles.name}>{follower.user_name}</h3>
-            <Link href={`followings/${follower.followed_id}/recipes`}>
-              この人の投稿を見る
+          <div key={follower.id} className={styles.follow_users}>
+            <Link
+              href={`followings/${follower.followed_id}/recipes`}
+              className={styles.link}
+            >
+              <Image
+                src={follower.avatar_url || NoImage}
+                alt={follower.avatar_url ? "レシピ画像" : "画像なし"}
+                width={100}
+                height={100}
+              />
+              <h3 className={styles.name}>{follower.user_name}</h3>
             </Link>
             <UnfollowButton follow_id={follower.id} />
           </div>
@@ -55,4 +65,4 @@ const index = ({followers}: {followers: FOLLOW}) => {
   );
 };
 
-export default index
+export default index;

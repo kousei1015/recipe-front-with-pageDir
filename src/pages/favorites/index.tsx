@@ -20,7 +20,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     }
   );
-
   return {
     props: {
       favoriteRecipes: favoriteRecipes.data,
@@ -48,7 +47,7 @@ const index = ({ favoriteRecipes }: { favoriteRecipes: FavRecipes }) => {
                     {recipe.recipe_name}
                   </span>
                 </div>
-                <p>ユーザー名: {recipe.user_name}</p>
+                <p className={styles.user_name}>ユーザー名: {recipe.user_name}</p>
                 <UnfavoriteButton favorite_id={recipe.favorite_id} />
               </Link>
             </article>

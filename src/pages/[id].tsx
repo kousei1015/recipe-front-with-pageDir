@@ -1,4 +1,4 @@
-import styles from "../styles/DetailRecipe.module.css"
+import styles from "../styles/DetailRecipe.module.css";
 import NoImage from "../../public/1560031.jpg";
 import DeleteButton from "@/components/DeleteButton";
 import FollowButton from "@/components/FollowButton";
@@ -46,13 +46,14 @@ const RecipeDetail = ({
   recipe: RECIPE;
   authInfo: AUTHINFO;
 }) => {
+  const isLogin = authInfo.is_login;
   const isOwnRecipe = recipe.user_id === authInfo.user_id;
   const isFavorited = !!recipe.favorite_id;
   const isFollowed = !!recipe.follow_id;
   return (
     <div className={styles.wrapper}>
       <div className={styles.recipe}>
-        <h2>{recipe.recipe_name}</h2>
+        <h2 className={styles.recipe_name}>{recipe.recipe_name}</h2>
         <div className={styles.img_wrapper}>
           <Image
             src={recipe.image_url || NoImage}
@@ -65,10 +66,10 @@ const RecipeDetail = ({
           <p>{recipe.process}</p>
         </div>
         <h3>材料</h3>
-        <ul>
+        <ul className={styles.ingredient_list}>
           {recipe.ingredients?.map((ingredient) => {
             return (
-              <li className={styles.ingredient}>
+              <li className={styles.ingredient_item}>
                 {ingredient.name} {ingredient.quantity}
               </li>
             );
@@ -78,21 +79,37 @@ const RecipeDetail = ({
         {isOwnRecipe ? (
           <DeleteButton recipe_id={recipe.id} />
         ) : (
-          <p>ユーザー名: {recipe.user_name}</p>
+          <div className={styles.avatar_wrapper}>
+            <Image
+              src={recipe.avatar_url || NoImage}
+              alt={recipe.avatar_url ? "レシピ画像" : "画像なし"}
+              width={100}
+              height={100}
+            />
+            <p>{recipe.user_name}</p>
+          </div>
         )}
 
-        {/*既にレシピがお気に入り済みの場合はお気に入りを解除させる そうでない場合は保存させる */}
-        {isFavorited ? (
-          <UnfavoriteButton favorite_id={recipe.favorite_id} />
-        ) : (
-          <FavoriteButton recipe_id={recipe.id} />
+        {/*ログインしていて、かつ既にレシピがお気に入り済みの場合はお気に入りを解除させる そうでない場合は保存させる */}
+        {isLogin && (
+          <>
+            {isFavorited ? (
+              <UnfavoriteButton favorite_id={recipe.favorite_id as number} />
+            ) : (
+              <FavoriteButton recipe_id={recipe.id} />
+            )}
+          </>
         )}
 
-        {/*フォロー済みの場合はフォローを解除する。 そうでない場合はフォローする */}
-        {isFollowed ? (
-          <UnfollowButton follow_id={recipe.follow_id} />
-        ) : (
-          <FollowButton user_id={recipe.user_id} />
+        {/*ログインしていて、かつユーザーを既にフォロー済みの場合はフォローを解除する。 そうでない場合はフォローする */}
+        {isLogin && (
+          <>
+            {isFollowed ? (
+              <UnfollowButton follow_id={recipe.follow_id as number} />
+            ) : (
+              <FollowButton user_id={recipe.user_id} />
+            )}
+          </>
         )}
       </div>
     </div>

@@ -1,40 +1,84 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# recipes-front-with-pageDir
 
-## Getting Started
+簡単なレシピアプリを作ってみました。フロントエンドはNextjs、バックエンドはRuby on RailsのAPIモードで開発しました。
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# 主な機能
+- レシピの閲覧(ユーザー登録しなくても可)
+- レシピ投稿(ユーザー登録必須)、レシピ削除(投稿した本人だけが削除可能で、第三者からレシピを削除はできません)機能
+- お気に入り登録機能(ユーザー登録必須)
+- フォロー機能(ユーザー登録必須)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 使用した技術
+- フロントエンド
+    - Nextjs(Pagesディレクトリ)
+    - StoryBook(インタラクションテストも行ってみました)
+    - React Hook Form
+    - zod
+    - axios
+    - js-cookie
+- バックエンド
+    - Ruby on Rails
+    - Active Storage
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+# ER図
+![ER図](./public/ER.drawio.svg)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+# 主な使い方
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## 1. トップページでレシピ一覧を見る。
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+![トップページの画像](./public/TopPage.png)
 
-## Learn More
+## 2. 気になったレシピがあったら、そのレシピの箇所をクリックすると、詳しい作り方が書いてある詳細ページへ飛びます。
 
-To learn more about Next.js, take a look at the following resources:
+![詳細ページの画像](./public/GuestUserRecipeView.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 3. 以下はユーザー登録、ログインをすることで、使える機能を紹介します。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+以下のようなユーザー登録画面です
+![登録画面の画像](./public/SignUp.png)
 
-## Deploy on Vercel
+## 4. レシピを投稿する
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 実際のレシピ投稿画面です
+![投稿画面の画像](./public/CreateRecipe.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 5. 興味のあるレシピをトップページで「保存」ボタンを押すことでお気に入り登録できます。正常に保存されれば、今度は「お気に入りを解除」と表示されます。
+
+![保存ボタンの画像](./public/ClickFavoriteButton.png)
+
+「保存」ボタンを押した後、トップページの「保存済みレシピを見る」を押すと、保存したレシピの一覧が見ることができます。
+
+![お気に入りレシピ一覧の画像](./public/FavoriteRecipes.png)
+
+## 6. フォロー機能も使える。5.と同様にトップページでフォローしたいユーザーがいれば「フォローする」ボタンを押す。そのリクエストがうまくいけば、「フォローを解除」と表示される。
+
+![フォロー画面](./public//ClickFollowButton.png)
+
+### 「フォローする」ボタンを押した後、トップページの「フォローしている人を見る」を押すと、フォローしている人を見られます。
+
+![フォロー一覧画面](./public/Followings.png)
+
+ちなみに、もちろんフォロワーも見ることができます
+
+## 7. レシピの削除(そのレシピを投稿した本人のみ削除が可能です)
+
+### 以下の画像を見ると、削除ボタンが表示されていることがわかると思います。このボタンを押すと、そのレシピを削除できます
+![レシピの削除](./public/OwnRecipeView.png)
+
+## 挑戦してみたこと
+
+- StoryBookの導入
+今回はStoryBookを使用してみたのですが、サーバー側を待たずにUIを確認できるのは非常に助かりました。また、コンポーネント単体で確認できるので、ページに組み込んだ後に修正するということが減りました。
+
+- 画像を表示するのに通常のHTMLのimgタグではなく、NextjsのImageコンポーネントを使用ました。Imageコンポーネントを使うことで画像の最適化が行われるので、Webページの表示速度が上がることにつながります。さらに、自動で遅延読み込みしてくれるそうです。
+
+### 余談
+画像を表示する際、NextjsのImageコンポーネントを使って、画像最適化していると説明しましたが、実際どの程度ファイルサイズが変化してみるか確認してみると、通常のHTMLのimgタグを使うのとではかなり違っており、具体的には1.9MBだったものが9.2KBへとなっていたので、驚きました。積極的に使っていきたいと思います。
+
+## 通常のHTMLのimgタグの場合
+![HTMLのimgタグ](./public/ImgSize1.png)
+
+##　NextjsのImageコンポーネントの場合
+![NextjsのImageコンポーネント](./public/ImgSize2.png)

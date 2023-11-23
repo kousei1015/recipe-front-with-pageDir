@@ -5,12 +5,27 @@ export type SignIn = {
 
 export type SignUp = SignIn & {
   name: string;
+  password_confirmation: string;
 };
 
 export type AUTHINFO = {
   is_login: boolean;
-  user_id: number;
+  user_id?: number;
+  user_name?: string;
+  avatar_url?: string;
 };
+
+export type ModalProps = {
+  isShow: boolean;
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
+  user_name: string;
+  avatar_url: string;
+};
+
+export type ProfileEditProps = {
+  name: string;
+  avatar: File;
+}
 
 export type RECIPEBASE = {
   id: number;
@@ -31,8 +46,9 @@ export type RECIPE = {
   image_url: string;
   user_id: number;
   user_name: string;
-  favorite_id: number;
-  follow_id: number;
+  avatar_url: string;
+  favorite_id?: number;
+  follow_id?: number;
 };
 
 export type RECIPES = {
@@ -51,7 +67,6 @@ export type FavRecipes = {
   recipe_name: string;
   user_id: number;
   user_name: string;
-  process: string;
   image_url: string;
 }[];
 
@@ -60,4 +75,5 @@ export type FOLLOW = {
   follower_id: number;
   followed_id: number;
   user_name: string;
+  avatar_url: string;
 }[];

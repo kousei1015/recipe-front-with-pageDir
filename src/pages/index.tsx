@@ -1,4 +1,7 @@
+import Modal from "@/components/Modal";
+import LogoutButton from "../components/LogoutButton";
 import styles from "../styles/Top.module.css";
+import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import Image from "next/image";
@@ -47,18 +50,41 @@ const index = ({
   authInfo: AUTHINFO;
   recipes: RECIPES;
 }) => {
+  const [isShow, setIsShow] = useState(false);
+
+  const openModal = () => {
+    setIsShow(true);
+  };
+
   return (
     <>
+      {authInfo?.is_login ? (
+        <>
+          <div className={styles.avatar_wrapper}>
+          <LogoutButton />
+            <div className={styles.avatar} onClick={openModal}>
+              <Image
+                src={authInfo.avatar_url || NoImage}
+                alt={authInfo.avatar_url ? "レシピ画像" : "画像なし"}
+                width={100}
+                height={100}
+              />
+              <span>{authInfo.user_name}</span>
+            </div>
+          </div>
+
+          <Modal
+            isShow={isShow}
+            setIsShow={setIsShow}
+            user_name={authInfo.user_name as string}
+            avatar_url={authInfo.avatar_url as string}
+          />
+        </>
+      ) : null}
       <h2 className={styles.heading}>レシピ一覧</h2>
       <div className={styles.headers}>
         {authInfo?.is_login ? (
           <>
-            <Link href="/followings">
-              <h3>フォロー中</h3>
-            </Link>
-            <Link href="/followers">
-              <h3>フォロワー</h3>
-            </Link>
             <Link href="/favorites">
               <h3>保存済みレシピ</h3>
             </Link>
@@ -87,6 +113,7 @@ const index = ({
                 />
                 <span className={styles.recipe_name}>{recipe.recipe_name}</span>
               </div>
+              <p className={styles.user_name}>by {recipe.user_name}</p>
             </Link>
           </article>
         ))}
